@@ -1,0 +1,102 @@
+HR Management System Web Pages
+
+This repository contains a set of PHP web pages designed to manage various Human Resources functions, including employee directory, payroll, attendance, performance reviews, and leave requests. 
+The system features a user authentication flow, with a login page and a dashboard providing an overview of HR metrics. Common navigation and footer components are integrated across all authenticated pages.
+Username = admin
+Password = Password123
+Locate the folder called dumps.
+The folder containes database tables.
+Create a database called moderntech_hr
+Then copy the tables as they are.
+You will have to change the password to your own.
+The website should display then.
+
+ Features
+
+  * Secure user login and session management.
+  * Centralized dashboard with key HR metrics.
+  * Comprehensive employee directory with CRUD operations (Add, Edit, Delete, Search).
+  * Payroll management with calculations based on attendance and leave.
+  * Attendance tracking with features to add, update, and delete records.
+  * Performance review management including adding, editing, and deleting employee performance data.
+  * Leave request management, allowing submission, viewing, status updates, and deletion of requests.
+  * Responsive sidebar navigation and consistent footer across authenticated pages.
+
+Page Overview
+
+The application follows a logical flow, starting with user authentication and leading to various HR management modules.
+
+ LoginView.php
+
+This is the initial entry point of the application. It handles user authentication, verifying credentials against a stored password and managing user sessions. Upon successful login, the user is redirected to the Dashboard.
+
+ Dashboard.View.php
+
+The Dashboard serves as the central hub for the HR system, providing a summary of key HR metrics. It displays information such as:
+
+  * Total present and absent employees.
+  * Total denied and pending leave requests.
+  * Employee information including department, salary, and employment history.
+  * Weekly hours data for employees.
+
+ Employee\_Directory.php
+
+This page manages employee records within the system. It provides functionalities for:
+
+  * Adding new employees: Inputting details such as name, position, department, salary, employment history, contact, and photo.
+  * Editing existing employee details**: Updating any of the employee's attributes.
+  * Deleting employee records: Removing an employee from the directory.
+  * Searching employees: Filtering employee records by name.
+
+Payroll.php
+
+The Payroll page is responsible for calculating and managing employee payroll. It fetches and aggregates data related to:
+
+  * Employee information (ID, name, position, department, salary, employment history).
+  * Attendance data for a defined pay period to determine hours worked.
+  * Approved leave requests to apply deductions.
+    The page is designed to process payroll based on these factors, displaying a summary and allowing for payslip downloads.
+
+ AttendanceView.php
+
+This page is dedicated to managing employee attendance records. It supports the following operations:
+
+  * Adding attendance: Recording an employee's presence or absence for a specific date. It includes a check to prevent duplicate entries for the same employee on the same day.
+  * Updating attendance: Modifying existing attendance records.
+  * Deleting attendance: Removing attendance entries.
+
+PerformanceReviewView.php
+
+This module allows for the management of employee performance reviews. Key features include:
+
+  * Adding employees for review: Registering an employee with an initial performance score.
+  * Editing performance details: Updating an employee's name or performance score.
+  * Deleting performance records: Removing performance review entries.
+
+LeaveView.php
+
+The Leave Request Management page facilitates the process of handling employee leave requests. It provides functionalities for:
+
+  * Submitting leave requests: Employees can submit new requests with specified start and end dates, and a reason. Requests are initially set to a 'Pending' status.
+  * Viewing leave requests: Displaying all submitted leave requests, including employee names and their current status.
+  * Updating leave status: HR personnel can approve, deny, or change the status of pending leave requests.
+  * Deleting leave requests: Removing leave request entries.
+
+ Common Components
+
+Sidebar.php
+
+The `Sidebar.php` component provides a consistent navigation menu across all pages except the `LoginView.php`. 
+It dynamically adjusts based on the user's session and provides links to different sections of the HR system, such as Dashboard, Employee Directory, Payroll, Attendance, Performance Review, and Leave Request. 
+It also displays the logged-in user's name and profile picture.
+
+Footer.php
+
+The `Footer.php` component is included at the bottom of every page, except for the `LoginView.php`. 
+It typically contains consistent information and branding elements, such as links to social media (e.g., Facebook, GitHub, Twitter) and copyright information.
+
+Database Connection
+
+All pages interact with a MySQL database named `moderntech_hr` using a `root` user and a defined password. 
+Database connection details are configured in `config.php` (not provided in the files, but referenced). 
+The system uses PDO for database interactions in some pages (e.g., `AttendanceView.php`, `PerformanceReviewView.php`, `Employee_Directory.php`) and `mysqli` in others (e.g., `LeaveView.php`, `Dashboard.View.php`, `Payroll.php`).
